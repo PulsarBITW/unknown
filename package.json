@@ -1,0 +1,12 @@
+{
+  "name": "root",
+  "scripts": {
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "9.1.7"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
