@@ -1,21 +1,22 @@
-import { useState } from "react";
-import { Theme } from "@radix-ui/themes";
-import { RouterProvider } from "@tanstack/react-router";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { allSettled } from "effector";
 
-import { router } from "./routing";
+import { appScope } from "@shared/config";
 
-function App() {
-  const [darkMode] = useState<boolean>(false);
+import { appStarted } from "./model";
+import { AppWithProvider } from "./ui";
 
-  const getAppearance = () => (darkMode ? "dark" : "light");
+async function initializeApp() {
+  const root = document.getElementById("root")!;
 
-  return (
-    <Theme appearance={getAppearance()}>
-      <div style={{ height: "2000px" }}>
-        <RouterProvider router={router} />
-      </div>
-    </Theme>
+  await allSettled(appStarted, { scope: appScope });
+
+  createRoot(root).render(
+    <StrictMode>
+      <AppWithProvider />
+    </StrictMode>,
   );
 }
 
-export default App;
+export default initializeApp;

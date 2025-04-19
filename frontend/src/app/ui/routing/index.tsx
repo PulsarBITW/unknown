@@ -5,7 +5,7 @@ import {
   Outlet,
 } from "@tanstack/react-router";
 
-import { Header } from "@app/header";
+import { Header } from "@app/ui/header";
 
 import { ROUTES } from "@shared/config";
 import { createBoundEvent } from "@shared/lib/createBoundEvent";
