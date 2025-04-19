@@ -11,8 +11,7 @@
     "lint:css": "stylelint \"src/**/*.{css,scss}\"",
     "lint:css:fix": "stylelint \"src/**/*.{css,scss}\" --fix",
     "format": "prettier --write \"**/*.{js,ts,jsx,tsx,css,scss}\"",
-    "preview": "vite preview --outDir dist-result",
-    "prepare": "husky"
+    "preview": "vite preview"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
@@ -20,7 +19,8 @@
       "npm run lint"
     ],
     "*.{css,scss}": [
-      "npm run format"
+      "npm run format",
+      "npm run lint:css"
     ]
   },
   "dependencies": {
@@ -40,6 +40,14 @@
     "prettier": "^3.5.3",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.26.1",
-    "vite": "^6.3.1"
+    "vite": "^6.3.1",
+    "@types/node": "^22.14.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "stylelint": "^16.18.0",
+    "stylelint-config-standard": "^38.0.0",
+    "stylelint-order": "^6.0.4",
+    "stylelint-prettier": "^5.0.3",
+    "vite-plugin-checker": "^0.9.1",
+    "vite-plugin-svgr": "^4.3.0"
   }
 }

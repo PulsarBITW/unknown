@@ -1,0 +1,7 @@
+node_modules/
+*.min.css
+dist/
+.vscode/
+.idea/
+*.js
+*.ts
