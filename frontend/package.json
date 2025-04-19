@@ -25,7 +25,11 @@
   },
   "dependencies": {
     "@radix-ui/themes": "^3.2.1",
+    "@tanstack/react-router": "^1.116.0",
     "clsx": "^2.1.1",
+    "effector": "^23.3.0",
+    "effector-react": "^23.3.0",
+    "patronum": "^2.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

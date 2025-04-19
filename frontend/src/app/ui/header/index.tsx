@@ -1,6 +1,9 @@
-import { Avatar, Flex, Text } from "@radix-ui/themes";
+import {Avatar, Flex, Text} from '@radix-ui/themes';
+import {Link} from '@tanstack/react-router';
 
-import styles from "./header.module.css";
+import {ROUTES} from '@shared/config';
+
+import styles from './header.module.css';
 
 export const Header = () => {
   return (
@@ -10,7 +13,16 @@ export const Header = () => {
           MyApp
         </Text>
 
-        <div>search</div>
+        <nav>
+          <ul>
+            <li>
+              <Link to={ROUTES.home}>Home</Link>
+            </li>
+            <li>
+              <Link to={ROUTES.about}>About</Link>
+            </li>
+          </ul>
+        </nav>
 
         <Flex align="center" gap="2">
           <Avatar
