@@ -7,4 +7,5 @@ export default {
     'order/properties-alphabetical-order': true,
     'block-no-empty': true,
   },
+  ignoreFiles: ['**/dist/**/*'],
 };
