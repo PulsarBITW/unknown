@@ -1,9 +1,9 @@
-import { Avatar, Flex, Text } from "@radix-ui/themes";
-import { Link } from "@tanstack/react-router";
+import {Avatar, Flex, Text} from '@radix-ui/themes';
+import {Link} from '@tanstack/react-router';
 
-import { ROUTES } from "@shared/config";
+import {ROUTES} from '@shared/config';
 
-import styles from "./header.module.css";
+import styles from './header.module.css';
 
 export const Header = () => {
   return (

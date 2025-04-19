@@ -1,1 +1,1 @@
-export { $info, aboutPageManager } from "./model";
+export {$info, aboutPageManager} from './model';

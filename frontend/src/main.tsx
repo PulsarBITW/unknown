@@ -1,5 +1,5 @@
-import initializeApp from "@app";
+import initializeApp from '@app';
 
-import "./index.css";
+import './index.css';
 
 initializeApp();

@@ -1,2 +1,2 @@
-export * from "./effector";
-export * from "./routes";
+export * from './effector';
+export * from './routes';

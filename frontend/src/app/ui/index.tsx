@@ -1,8 +1,8 @@
-import { Provider } from "effector-react";
+import {Provider} from 'effector-react';
 
-import { appScope } from "@shared/config";
+import {appScope} from '@shared/config';
 
-import { App } from "./App";
+import {App} from './App';
 
 export const AppWithProvider = () => {
   return (

@@ -1,19 +1,19 @@
-import { createEffect, createStore, sample } from "effector";
+import {createEffect, createStore, sample} from 'effector';
 
-import { createPageStateManager } from "@shared/lib/createPageStateManager";
-import { pause } from "@shared/lib/pause";
+import {createPageStateManager} from '@shared/lib/createPageStateManager';
+import {pause} from '@shared/lib/pause';
 
 export const fetchAboutDataFx = createEffect({
-  name: "fetchAboutDataFx",
+  name: 'fetchAboutDataFx',
   handler: async () => {
     await pause(1_000);
-    return { info: "This is the about page." };
+    return {info: 'This is the about page.'};
   },
 });
 
-export const aboutPageManager = createPageStateManager({ pageName: "About" });
+export const aboutPageManager = createPageStateManager({pageName: 'About'});
 
-export const $info = createStore<string>("");
+export const $info = createStore<string>('');
 
 sample({
   clock: aboutPageManager.pageOpened,

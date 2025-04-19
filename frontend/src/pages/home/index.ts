@@ -1,2 +1,2 @@
-export { homePageManager } from "./model";
-export { HomePage } from "./ui";
+export {homePageManager} from './model';
+export {HomePage} from './ui';

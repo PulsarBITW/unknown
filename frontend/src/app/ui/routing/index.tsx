@@ -1,17 +1,12 @@
-import {
-  createRootRoute,
-  createRoute,
-  createRouter,
-  Outlet,
-} from "@tanstack/react-router";
+import {createRootRoute, createRoute, createRouter, Outlet} from '@tanstack/react-router';
 
-import { Header } from "@app/ui/header";
+import {Header} from '@app/ui/header';
 
-import { ROUTES } from "@shared/config";
-import { createBoundEvent } from "@shared/lib/createBoundEvent";
+import {ROUTES} from '@shared/config';
+import {createBoundEvent} from '@shared/lib/createBoundEvent';
 
-import { AboutPage, aboutPageManager } from "@pages/about";
-import { HomePage, homePageManager } from "@pages/home";
+import {AboutPage, aboutPageManager} from '@pages/about';
+import {HomePage, homePageManager} from '@pages/home';
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -52,4 +47,4 @@ const aboutRoute = createRoute({
 
 const routeTree = rootRoute.addChildren([homeRoute, aboutRoute]);
 
-export const router = createRouter({ routeTree });
+export const router = createRouter({routeTree});

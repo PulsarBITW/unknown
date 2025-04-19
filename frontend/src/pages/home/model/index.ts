@@ -1,1 +1,1 @@
-export { $message, homePageManager } from "./model";
+export {$message, homePageManager} from './model';

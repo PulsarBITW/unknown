@@ -1,19 +1,19 @@
-import { createEffect, createStore, sample } from "effector";
+import {createEffect, createStore, sample} from 'effector';
 
-import { createPageStateManager } from "@shared/lib/createPageStateManager";
-import { pause } from "@shared/lib/pause";
+import {createPageStateManager} from '@shared/lib/createPageStateManager';
+import {pause} from '@shared/lib/pause';
 
 export const fetchMockDataFx = createEffect({
-  name: "fetchMockDataFx",
+  name: 'fetchMockDataFx',
   handler: async () => {
     await pause(3_000);
-    return { message: "success" };
+    return {message: 'success'};
   },
 });
 
-export const homePageManager = createPageStateManager({ pageName: "Home" });
+export const homePageManager = createPageStateManager({pageName: 'Home'});
 
-export const $message = createStore<string>("");
+export const $message = createStore<string>('');
 
 sample({
   clock: homePageManager.pageOpened,
