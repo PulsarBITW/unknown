@@ -2,7 +2,7 @@ import { Provider } from "effector-react";
 
 import { appScope } from "@shared/config";
 
-import { App } from "./app";
+import { App } from "./App";
 
 export const AppWithProvider = () => {
   return (
