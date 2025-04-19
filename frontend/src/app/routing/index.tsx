@@ -5,13 +5,21 @@ import {
   Outlet,
 } from "@tanstack/react-router";
 
+import { Header } from "@app/header";
+
 import { ROUTES } from "@shared/config";
 import { createBoundEvent } from "@shared/lib/createBoundEvent";
 
-import { HomePage, homePageOpened } from "@pages/home";
+import { AboutPage, aboutPageManager } from "@pages/about";
+import { HomePage, homePageManager } from "@pages/home";
 
 const rootRoute = createRootRoute({
-  component: () => <Outlet />,
+  component: () => (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  ),
 });
 
 const homeRoute = createRoute({
@@ -19,11 +27,29 @@ const homeRoute = createRoute({
   path: ROUTES.home,
   component: HomePage,
   loader: () => {
-    const boundHomePageOpened = createBoundEvent(homePageOpened);
-    boundHomePageOpened({ id: "1" });
+    const boundHomePageOpened = createBoundEvent(homePageManager.pageOpened);
+    boundHomePageOpened();
+  },
+  onLeave: () => {
+    const boundHomePageClosed = createBoundEvent(homePageManager.pageClosed);
+    boundHomePageClosed();
   },
 });
 
-const routeTree = rootRoute.addChildren([homeRoute]);
+const aboutRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: ROUTES.about,
+  component: AboutPage,
+  loader: () => {
+    const boundAboutPageOpened = createBoundEvent(aboutPageManager.pageOpened);
+    boundAboutPageOpened();
+  },
+  onLeave: () => {
+    const boundAboutPageClosed = createBoundEvent(aboutPageManager.pageClosed);
+    boundAboutPageClosed();
+  },
+});
+
+const routeTree = rootRoute.addChildren([homeRoute, aboutRoute]);
 
 export const router = createRouter({ routeTree });

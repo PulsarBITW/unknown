@@ -1,5 +1,6 @@
-import { createEffect, createEvent, createStore, sample } from "effector";
+import { createEffect, createStore, sample } from "effector";
 
+import { createPageStateManager } from "@shared/lib/createPageStateManager";
 import { pause } from "@shared/lib/pause";
 
 export const fetchMockDataFx = createEffect({
@@ -10,12 +11,12 @@ export const fetchMockDataFx = createEffect({
   },
 });
 
-export const homePageOpened = createEvent<{ id: string }>();
+export const homePageManager = createPageStateManager({ pageName: "Home" });
 
 export const $message = createStore<string>("");
 
 sample({
-  clock: homePageOpened,
+  clock: homePageManager.pageOpened,
   target: fetchMockDataFx,
 });
 

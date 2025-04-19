@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Theme } from "@radix-ui/themes";
 import { RouterProvider } from "@tanstack/react-router";
 
-import { Header } from "./header";
 import { router } from "./routing";
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
 
   return (
     <Theme appearance={getAppearance()}>
-      <Header />
       <div style={{ height: "2000px" }}>
         <RouterProvider router={router} />
       </div>

@@ -1,2 +1,2 @@
-export { homePageOpened } from "./model";
+export { homePageManager } from "./model";
 export { HomePage } from "./ui";
