@@ -15,12 +15,12 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "npm run format",
-      "npm run lint"
+      "pnpm run format",
+      "pnpm run lint"
     ],
     "*.{css,scss}": [
-      "npm run format",
-      "npm run lint:css"
+      "pnpm run format",
+      "pnpm run lint:css"
     ]
   },
   "dependencies": {
