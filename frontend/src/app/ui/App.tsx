@@ -12,9 +12,7 @@ export function App() {
 
   return (
     <Theme appearance={getAppearance()}>
-      <div style={{height: '2000px'}}>
-        <RouterProvider router={router} />
-      </div>
+      <RouterProvider router={router} />
     </Theme>
   );
 }

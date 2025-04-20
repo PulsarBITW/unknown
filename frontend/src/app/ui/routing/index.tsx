@@ -7,6 +7,7 @@ import {createBoundEvent} from '@shared/lib/createBoundEvent';
 
 import {AboutPage, aboutPageManager} from '@pages/about';
 import {HomePage, homePageManager} from '@pages/home';
+import {LoginPage} from '@pages/login';
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -45,6 +46,12 @@ const aboutRoute = createRoute({
   },
 });
 
-const routeTree = rootRoute.addChildren([homeRoute, aboutRoute]);
+const loginRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: ROUTES.login,
+  component: LoginPage,
+});
+
+const routeTree = rootRoute.addChildren([homeRoute, aboutRoute, loginRoute]);
 
 export const router = createRouter({routeTree});

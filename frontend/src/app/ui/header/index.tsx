@@ -21,6 +21,9 @@ export const Header = () => {
             <li>
               <Link to={ROUTES.about}>About</Link>
             </li>
+            <li>
+              <Link to={ROUTES.login}>Login</Link>
+            </li>
           </ul>
         </nav>
 
