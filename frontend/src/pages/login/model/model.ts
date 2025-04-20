@@ -1,5 +1,7 @@
 import {createEvent, createStore, sample} from 'effector';
 
+import {createPageStateManager} from '@shared/lib/createPageStateManager';
+
 import {authModel, type Credentials} from '@features/auth';
 
 // Events
@@ -12,10 +14,12 @@ const $isLoading = createStore(false).on(
 );
 const $error = createStore<Error | null>(null);
 
+const loginPageManager = createPageStateManager();
+
 // Logic
 $error
   .on(authModel.authenticateByCredentialsFx.failData, (_, error) => error)
-  .reset(authModel.authenticateByCredentialsFx.done);
+  .reset(authModel.authenticateByCredentialsFx.done, loginPageManager.pageClosed);
 
 sample({
   clock: formSubmitted,
@@ -26,4 +30,5 @@ export const loginPageModel = {
   formSubmitted,
   $isLoading,
   $error,
+  loginPageManager,
 };

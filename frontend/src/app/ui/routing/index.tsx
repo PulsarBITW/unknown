@@ -7,7 +7,7 @@ import {createBoundEvent} from '@shared/lib/createBoundEvent';
 
 import {AboutPage, aboutPageManager} from '@pages/about';
 import {HomePage, homePageManager} from '@pages/home';
-import {LoginPage} from '@pages/login';
+import {LoginPage, loginPageModel} from '@pages/login';
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -50,6 +50,14 @@ const loginRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: ROUTES.login,
   component: LoginPage,
+  loader: () => {
+    const boundLoginPageOpened = createBoundEvent(loginPageModel.loginPageManager.pageOpened);
+    boundLoginPageOpened();
+  },
+  onLeave: () => {
+    const boundLoginPageClosed = createBoundEvent(loginPageModel.loginPageManager.pageClosed);
+    boundLoginPageClosed();
+  },
 });
 
 const routeTree = rootRoute.addChildren([homeRoute, aboutRoute, loginRoute]);
