@@ -12,7 +12,6 @@ const fetchCurrentUserFx = createEffect({
       name: 'JohnDoe',
       email: 'johndoe@example.com',
       id: Math.round(Math.random() * 10000).toString(),
-      login: 'johndoe',
     };
   },
 });
@@ -37,4 +36,6 @@ sample({
 export const currentUserModel = {
   fetchCurrentUserFx,
   $currentUser,
+  currentUserReset,
+  currentUserChanged,
 };

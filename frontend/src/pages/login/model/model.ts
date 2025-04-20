@@ -1,30 +1,25 @@
-import {createEffect, createEvent, createStore, sample} from 'effector';
+import {createEvent, createStore, sample} from 'effector';
 
-import {pause} from '@shared/lib/pause';
-
-import {type LoginFormData} from './login-schema';
+import {authModel, type Credentials} from '@features/auth';
 
 // Events
-const formSubmitted = createEvent<LoginFormData>();
-
-// Effects
-const loginFx = createEffect({
-  handler: async (data: LoginFormData) => {
-    await pause(2_000);
-    console.log('@formData', data);
-  },
-});
+const formSubmitted = createEvent<Credentials>();
 
 // Stores
-const $isLoading = createStore(false).on(loginFx.pending, (_, pending) => pending);
+const $isLoading = createStore(false).on(
+  authModel.authenticateByCredentialsFx.pending,
+  (_, pending) => pending,
+);
 const $error = createStore<Error | null>(null);
 
 // Logic
-$error.on(loginFx.failData, (_, error) => error).reset(loginFx.done);
+$error
+  .on(authModel.authenticateByCredentialsFx.failData, (_, error) => error)
+  .reset(authModel.authenticateByCredentialsFx.done);
 
 sample({
   clock: formSubmitted,
-  target: loginFx,
+  target: authModel.authenticateByCredentialsFx,
 });
 
 export const loginPageModel = {
