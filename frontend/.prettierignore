@@ -1,0 +1,9 @@
+# Builds
+dist
+build
+
+# Dependencies
+node_modules
+
+# Generated API files (orval)
+src/shared/api/requests.ts

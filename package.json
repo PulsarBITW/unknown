@@ -1,7 +1,9 @@
 {
   "name": "root",
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "backend:run": "cd backend && swag init -g cmd/api/main.go && go run cmd/api/main.go",
+    "frontend:run": "cd frontend && pnpm start"
   },
   "devDependencies": {
     "husky": "9.1.7"

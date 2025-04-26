@@ -33,5 +33,6 @@
       "@shared/*": ["shared/*"]
     }
   },
-  "include": ["src", "prettier.config.js"]
+  "include": ["src", "prettier.config.js"],
+  "exclude": ["src/shared/api/requests.ts"]
 }
