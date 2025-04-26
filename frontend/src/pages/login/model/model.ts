@@ -1,29 +1,38 @@
 import {createEvent, createStore, sample} from 'effector';
 
+import {ModelErrorResponseDto} from '@shared/api/requests';
 import {createPageStateManager} from '@shared/lib/createPageStateManager';
+import {isAxiosError} from '@shared/lib/isAxiosError';
 
-import {authModel, type Credentials} from '@features/auth';
+import {authModel} from '@features/auth';
+
+import {LoginFormData} from './login-schema';
 
 // Events
-const formSubmitted = createEvent<Credentials>();
+const formSubmitted = createEvent<LoginFormData>();
 
 // Stores
-const $isLoading = createStore(false).on(
-  authModel.authenticateByCredentialsFx.pending,
-  (_, pending) => pending,
-);
-const $error = createStore<Error | null>(null);
+
+const $error = createStore<string | null>(null);
+
+const $isLoading = authModel.authenticateByCredentialsQuery.$pending;
 
 const loginPageManager = createPageStateManager();
 
 // Logic
 $error
-  .on(authModel.authenticateByCredentialsFx.failData, (_, error) => error)
-  .reset(authModel.authenticateByCredentialsFx.done, loginPageManager.pageClosed);
+  .on(authModel.authenticateByCredentialsQuery.$error, (_, error) => {
+    if (isAxiosError<ModelErrorResponseDto>(error)) {
+      return error.response?.data.error ?? null;
+    }
+
+    return null;
+  })
+  .reset(authModel.authenticateByCredentialsQuery.$succeeded, loginPageManager.pageClosed);
 
 sample({
   clock: formSubmitted,
-  target: authModel.authenticateByCredentialsFx,
+  target: authModel.authenticateByCredentialsQuery.start,
 });
 
 export const loginPageModel = {

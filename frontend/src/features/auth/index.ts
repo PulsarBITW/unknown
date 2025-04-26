@@ -1,1 +1,1 @@
-export {authModel, type Credentials} from './model/model';
+export {authModel} from './model/authModel';

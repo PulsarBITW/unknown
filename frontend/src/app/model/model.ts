@@ -1,10 +1,8 @@
-import {createEvent, sample} from 'effector';
-
-import {currentUserModel} from '@entities/current-user';
+import {createEvent} from 'effector';
 
 export const appStarted = createEvent();
 
-sample({
-  clock: appStarted,
-  target: currentUserModel.fetchCurrentUserFx,
-});
+// sample({
+//   clock: appStarted,
+//   target: currentUserModel.fetchCurrentUserFx,
+// });

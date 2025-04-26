@@ -10,7 +10,7 @@ import { customInstance } from './apiClient';
  * API error
  */
 export interface ModelErrorResponseDto {
-  error?: string;
+  error: string;
 }
 
 /**
