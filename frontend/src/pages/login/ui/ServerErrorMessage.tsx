@@ -1,7 +1,7 @@
 import {Text} from '@radix-ui/themes';
 import {useUnit} from 'effector-react';
 
-import {loginPageModel} from '../model/model';
+import {loginPageModel} from '../model';
 
 import styles from './login.module.css';
 
