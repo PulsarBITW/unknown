@@ -13,6 +13,7 @@ import {
 } from '@shared/ui/form-components';
 
 import {type LoginFormData, loginPageModel, loginSchema} from '../model';
+import {ServerErrorMessage} from './ServerErrorMessage';
 
 import styles from './login.module.css';
 
@@ -66,6 +67,7 @@ export function LoginForm() {
           <Button type="submit" disabled={isLoading} loading={isLoading}>
             Sign In
           </Button>
+          <ServerErrorMessage />
         </Flex>
       </form>
     </Form>

@@ -24,6 +24,7 @@
     ]
   },
   "dependencies": {
+    "@farfetched/core": "^0.13.1",
     "@hookform/resolvers": "^5.0.1",
     "@radix-ui/themes": "^3.2.1",
     "@tanstack/react-router": "^1.116.0",

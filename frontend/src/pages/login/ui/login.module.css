@@ -9,10 +9,7 @@
   width: 200px;
 }
 
-.form-error {
-  color: var(--blue-11);
-}
-
-.form-error:where([data-visible='true']) {
-  color: var(--gray-11);
+.server-error-message {
+  color: var(--red-11);
+  margin: 0;
 }
