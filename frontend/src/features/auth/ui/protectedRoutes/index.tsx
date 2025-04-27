@@ -4,14 +4,14 @@ import {useUnit} from 'effector-react';
 
 import {ROUTES} from '@shared/config';
 
-import {$isAuth} from '../../model/authModel';
+import {authModel} from '../../model/authModel';
 
 type ProtectedRouteProps = {
   children: ReactNode;
 };
 
 export const AuthRoute = ({children}: ProtectedRouteProps) => {
-  const isAuth = useUnit($isAuth);
+  const isAuth = useUnit(authModel.$isAuth);
 
   if (!isAuth) {
     return <Navigate to={ROUTES.login} />;
@@ -21,7 +21,7 @@ export const AuthRoute = ({children}: ProtectedRouteProps) => {
 };
 
 export const UnauthRoute = ({children}: ProtectedRouteProps) => {
-  const isAuth = useUnit($isAuth);
+  const isAuth = useUnit(authModel.$isAuth);
 
   if (isAuth) {
     return <Navigate to={ROUTES.home} />;

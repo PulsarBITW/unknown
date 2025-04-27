@@ -32,7 +32,7 @@ const login = createEvent<ModelLoginRequestDto>();
 const logout = createEvent();
 
 // Stores
-export const $isAuth = currentUserModel.$currentUser.map((user) => !!user);
+const $isAuth = currentUserModel.$currentUser.map((user) => !!user);
 
 // Logic
 sample({
