@@ -6,6 +6,7 @@ import {createBoundEvent} from '@shared/lib/createBoundEvent';
 import {UnauthRoute} from '@features/auth';
 
 import {LoginPage, loginPageModel} from '@pages/login';
+import {SignupPage, signupPageModel} from '@pages/signup';
 
 import {rootRoute} from '../rootRoute';
 import {AuthLayout} from './layout';
@@ -51,13 +52,13 @@ const loginRoute = createRoute({
 const signupRoute = createRoute({
   getParentRoute: () => authRoute,
   path: ROUTES.auth.children.signup.lastPath,
-  component: () => <LoginPage />,
+  component: () => <SignupPage />,
   loader: () => {
-    const boundLoginPageOpened = createBoundEvent(loginPageModel.loginPageManager.pageOpened);
+    const boundLoginPageOpened = createBoundEvent(signupPageModel.signupPageManager.pageOpened);
     boundLoginPageOpened();
   },
   onLeave: () => {
-    const boundLoginPageClosed = createBoundEvent(loginPageModel.loginPageManager.pageClosed);
+    const boundLoginPageClosed = createBoundEvent(signupPageModel.signupPageManager.pageClosed);
     boundLoginPageClosed();
   },
 });
