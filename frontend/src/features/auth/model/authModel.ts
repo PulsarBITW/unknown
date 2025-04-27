@@ -31,6 +31,9 @@ const saveAccessTokenFx = createEffect({
 const login = createEvent<ModelLoginRequestDto>();
 const logout = createEvent();
 
+// Stores
+export const $isAuth = currentUserModel.$currentUser.map((user) => !!user);
+
 // Logic
 sample({
   clock: [authenticateByCredentialsQuery.finished.success, authenticateByJWTQuery.finished.success],
@@ -63,4 +66,5 @@ export const authModel = {
   logout,
   authenticateByCredentialsQuery,
   authenticateByJWTQuery,
+  $isAuth,
 };

@@ -5,6 +5,8 @@ import {Header} from '@app/ui/header';
 import {ROUTES} from '@shared/config';
 import {createBoundEvent} from '@shared/lib/createBoundEvent';
 
+import {AuthRoute, UnauthRoute} from '@features/auth';
+
 import {AboutPage, aboutPageManager} from '@pages/about';
 import {HomePage, homePageManager} from '@pages/home';
 import {LoginPage, loginPageModel} from '@pages/login';
@@ -21,7 +23,11 @@ const rootRoute = createRootRoute({
 const homeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: ROUTES.home,
-  component: HomePage,
+  component: () => (
+    <AuthRoute>
+      <HomePage />
+    </AuthRoute>
+  ),
   loader: () => {
     const boundHomePageOpened = createBoundEvent(homePageManager.pageOpened);
     boundHomePageOpened();
@@ -35,7 +41,11 @@ const homeRoute = createRoute({
 const aboutRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: ROUTES.about,
-  component: AboutPage,
+  component: () => (
+    <AuthRoute>
+      <AboutPage />
+    </AuthRoute>
+  ),
   loader: () => {
     const boundAboutPageOpened = createBoundEvent(aboutPageManager.pageOpened);
     boundAboutPageOpened();
@@ -49,7 +59,11 @@ const aboutRoute = createRoute({
 const loginRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: ROUTES.login,
-  component: LoginPage,
+  component: () => (
+    <UnauthRoute>
+      <LoginPage />
+    </UnauthRoute>
+  ),
   loader: () => {
     const boundLoginPageOpened = createBoundEvent(loginPageModel.loginPageManager.pageOpened);
     boundLoginPageOpened();
