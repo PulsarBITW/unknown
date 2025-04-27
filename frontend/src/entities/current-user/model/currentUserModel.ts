@@ -1,6 +1,6 @@
 import {createEvent, createStore, sample} from 'effector';
 
-import {ModelUserResponseDto} from '@shared/api/requests';
+import {ModelUserResponseDto} from '@shared/api';
 
 const $currentUser = createStore<ModelUserResponseDto | null>(null);
 

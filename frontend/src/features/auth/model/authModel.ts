@@ -1,14 +1,30 @@
 import {createQuery} from '@farfetched/core';
-import {createEvent, sample} from 'effector';
+import {createEffect, createEvent, sample} from 'effector';
 
-import type {ModelLoginRequestDto, ModelUserResponseDto} from '@shared/api/requests';
-import {postApiV1AuthLoginCredentials} from '@shared/api/requests';
+import {
+  AccessTokenController,
+  ModelLoginRequestDto,
+  ModelUserResponseDto,
+  postApiV1AuthLoginCredentials,
+  postApiV1AuthLoginJwt,
+} from '@shared/api';
 
 import {currentUserModel} from '@entities/current-user';
 
-// Farfetched query for authentication by credentials
-export const authenticateByCredentialsQuery = createQuery({
+// Queries
+const authenticateByCredentialsQuery = createQuery({
   handler: postApiV1AuthLoginCredentials,
+});
+
+const authenticateByJWTQuery = createQuery({
+  handler: postApiV1AuthLoginJwt,
+});
+
+// Effects
+const saveAccessTokenFx = createEffect({
+  handler: (token: string) => {
+    AccessTokenController.saveToken(token);
+  },
 });
 
 // Events
@@ -17,14 +33,24 @@ const logout = createEvent();
 
 // Logic
 sample({
-  clock: login,
-  target: authenticateByCredentialsQuery.start,
+  clock: [authenticateByCredentialsQuery.finished.success, authenticateByJWTQuery.finished.success],
+  fn: ({result}): ModelUserResponseDto => {
+    const {email, firstName, id, lastName} = result.data;
+
+    return {
+      email,
+      firstName,
+      id,
+      lastName,
+    };
+  },
+  target: currentUserModel.currentUserChanged,
 });
 
 sample({
   clock: authenticateByCredentialsQuery.finished.success,
-  fn: ({result}): ModelUserResponseDto => result.data,
-  target: currentUserModel.currentUserChanged,
+  fn: ({result}) => result.data.accessToken,
+  target: saveAccessTokenFx,
 });
 
 sample({
@@ -36,4 +62,5 @@ export const authModel = {
   login,
   logout,
   authenticateByCredentialsQuery,
+  authenticateByJWTQuery,
 };

@@ -1,6 +1,6 @@
 import {createEvent, createStore, sample} from 'effector';
 
-import {ModelErrorResponseDto} from '@shared/api/requests';
+import {ModelErrorResponseDto} from '@shared/api';
 import {createPageStateManager} from '@shared/lib/createPageStateManager';
 import {isAxiosError} from '@shared/lib/isAxiosError';
 

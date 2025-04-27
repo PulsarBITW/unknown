@@ -17,6 +17,11 @@ import {ServerErrorMessage} from './ServerErrorMessage';
 
 import styles from './login.module.css';
 
+const INITIAL_VALUES: LoginFormData = {
+  email: 'john@example.com',
+  password: 'password123',
+};
+
 export function LoginForm() {
   const [isLoading, submitForm] = useUnit([
     loginPageModel.$isLoading,
@@ -26,6 +31,7 @@ export function LoginForm() {
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     mode: 'onChange',
+    defaultValues: INITIAL_VALUES,
   });
 
   const onSubmit = (data: LoginFormData) => {

@@ -7,6 +7,17 @@
  */
 import { customInstance } from './apiClient';
 /**
+ * Authentication response
+ */
+export interface ModelAuthResponseDto {
+  accessToken: string;
+  email: string;
+  firstName: string;
+  id: string;
+  lastName: string;
+}
+
+/**
  * API error
  */
 export interface ModelErrorResponseDto {
@@ -27,6 +38,13 @@ export interface ModelLoginRequestDto {
 }
 
 /**
+ * Response for refreshed access token
+ */
+export interface ModelRefreshTokenResponseDto {
+  accessToken: string;
+}
+
+/**
  * Data for user registration
  */
 export interface ModelRegisterRequestDto {
@@ -44,10 +62,10 @@ export interface ModelRegisterRequestDto {
 }
 
 export interface ModelUserResponseDto {
-  email?: string;
-  firstName?: string;
-  id?: string;
-  lastName?: string;
+  email: string;
+  firstName: string;
+  id: string;
+  lastName: string;
 }
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
@@ -60,7 +78,7 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 export const postApiV1AuthLoginCredentials = (
     modelLoginRequestDto: ModelLoginRequestDto,
  options?: SecondParameter<typeof customInstance>,) => {
-      return customInstance<ModelUserResponseDto>(
+      return customInstance<ModelAuthResponseDto>(
       {url: `/api/v1/auth/login/credentials`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
       data: modelLoginRequestDto
@@ -69,16 +87,27 @@ export const postApiV1AuthLoginCredentials = (
     }
   
 /**
- * Authenticate user by JWT token
+ * Authenticate user by JWT token using the Authorization header
  * @summary Authenticate user by JWT token
  */
 export const postApiV1AuthLoginJwt = (
-    postApiV1AuthLoginJwtBody: string,
+    
  options?: SecondParameter<typeof customInstance>,) => {
       return customInstance<ModelUserResponseDto>(
-      {url: `/api/v1/auth/login/jwt`, method: 'POST',
-      headers: {'Content-Type': 'application/json', },
-      data: postApiV1AuthLoginJwtBody
+      {url: `/api/v1/auth/login/jwt`, method: 'POST'
+    },
+      options);
+    }
+  
+/**
+ * Refresh access token using a valid refresh token from cookie
+ * @summary Refresh access token
+ */
+export const postApiV1AuthRefresh = (
+    
+ options?: SecondParameter<typeof customInstance>,) => {
+      return customInstance<ModelRefreshTokenResponseDto>(
+      {url: `/api/v1/auth/refresh`, method: 'POST'
     },
       options);
     }
@@ -100,4 +129,5 @@ export const postApiV1AuthRegister = (
   
 export type PostApiV1AuthLoginCredentialsResult = NonNullable<Awaited<ReturnType<typeof postApiV1AuthLoginCredentials>>>
 export type PostApiV1AuthLoginJwtResult = NonNullable<Awaited<ReturnType<typeof postApiV1AuthLoginJwt>>>
+export type PostApiV1AuthRefreshResult = NonNullable<Awaited<ReturnType<typeof postApiV1AuthRefresh>>>
 export type PostApiV1AuthRegisterResult = NonNullable<Awaited<ReturnType<typeof postApiV1AuthRegister>>>
