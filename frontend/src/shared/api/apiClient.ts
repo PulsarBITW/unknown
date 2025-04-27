@@ -1,7 +1,12 @@
 import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
+import {allSettled, createEvent} from 'effector';
+
+import {appScope} from '@shared/config';
 
 import {AccessTokenController} from './accessTokenController';
 import {postApiV1AuthRefresh} from './requests';
+
+export const refreshTokenExpired = createEvent();
 
 const apiClient = axios.create({
   headers: {
@@ -39,6 +44,7 @@ apiClient.interceptors.response.use(
         originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
         return apiClient(originalRequest);
       } catch (refreshError) {
+        allSettled(refreshTokenExpired, {scope: appScope});
         return Promise.reject(refreshError);
       }
     }

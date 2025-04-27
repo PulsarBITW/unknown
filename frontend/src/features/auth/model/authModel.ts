@@ -7,6 +7,7 @@ import {
   ModelUserResponseDto,
   postApiV1AuthLoginCredentials,
   postApiV1AuthLoginJwt,
+  refreshTokenExpired,
 } from '@shared/api';
 
 import {currentUserModel} from '@entities/current-user';
@@ -25,6 +26,10 @@ const saveAccessTokenFx = createEffect({
   handler: (token: string) => {
     AccessTokenController.saveToken(token);
   },
+});
+
+const removeAccessTokenFx = createEffect({
+  handler: AccessTokenController.removeToken,
 });
 
 // Events
@@ -57,8 +62,13 @@ sample({
 });
 
 sample({
+  clock: refreshTokenExpired,
+  target: logout,
+});
+
+sample({
   clock: logout,
-  target: currentUserModel.currentUserReset,
+  target: [currentUserModel.currentUserReset, removeAccessTokenFx],
 });
 
 export const authModel = {

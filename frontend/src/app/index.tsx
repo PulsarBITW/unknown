@@ -4,7 +4,7 @@ import {allSettled} from 'effector';
 import {appScope} from '@shared/config';
 
 import {appModel} from './model';
-import {AppWithProvider} from './ui/index.ts';
+import {AppWithProvider} from './ui';
 
 async function initializeApp() {
   const root = document.getElementById('root')!;

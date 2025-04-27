@@ -2,7 +2,7 @@ import {createEvent, sample} from 'effector';
 
 import {authModel} from '@features/auth';
 
-export const appStarted = createEvent();
+const appStarted = createEvent();
 
 const $isInitialAuthLoading = authModel.authenticateByJWTQuery.$pending;
 
