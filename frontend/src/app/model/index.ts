@@ -1,1 +1,1 @@
-export {appStarted} from './model';
+export {appModel} from './model';

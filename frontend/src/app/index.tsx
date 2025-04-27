@@ -1,22 +1,17 @@
-import {StrictMode} from 'react';
 import {createRoot} from 'react-dom/client';
 import {allSettled} from 'effector';
 
 import {appScope} from '@shared/config';
 
-import {appStarted} from './model';
+import {appModel} from './model';
 import {AppWithProvider} from './ui';
 
 async function initializeApp() {
   const root = document.getElementById('root')!;
 
-  await allSettled(appStarted, {scope: appScope});
+  allSettled(appModel.appStarted, {scope: appScope}); // #TODO: await
 
-  createRoot(root).render(
-    <StrictMode>
-      <AppWithProvider />
-    </StrictMode>,
-  );
+  createRoot(root).render(<AppWithProvider />);
 }
 
 export default initializeApp;

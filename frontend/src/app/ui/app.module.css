@@ -41,3 +41,16 @@
   background-color: var(--gray-1);
   color: var(--gray-1);
 }
+
+.spinner-wrapper {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.spinner {
+  height: 48px !important;
+  width: 48px !important;
+}
