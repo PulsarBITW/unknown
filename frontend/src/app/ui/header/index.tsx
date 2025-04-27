@@ -16,13 +16,13 @@ export const Header = () => {
         <nav>
           <ul>
             <li>
-              <Link to={ROUTES.home}>Home</Link>
+              <Link to={ROUTES.home.absolutePath}>Home</Link>
             </li>
             <li>
-              <Link to={ROUTES.about}>About</Link>
+              <Link to={ROUTES.about.absolutePath}>About</Link>
             </li>
             <li>
-              <Link to={ROUTES.login}>Login</Link>
+              <Link to={ROUTES.auth.children.login.absolutePath}>Login</Link>
             </li>
           </ul>
         </nav>

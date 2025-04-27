@@ -14,7 +14,7 @@ export const AuthRoute = ({children}: ProtectedRouteProps) => {
   const isAuth = useUnit(authModel.$isAuth);
 
   if (!isAuth) {
-    return <Navigate to={ROUTES.login} />;
+    return <Navigate to={ROUTES.auth.children.login.absolutePath} />;
   }
 
   return <>{children}</>;
@@ -24,7 +24,7 @@ export const UnauthRoute = ({children}: ProtectedRouteProps) => {
   const isAuth = useUnit(authModel.$isAuth);
 
   if (isAuth) {
-    return <Navigate to={ROUTES.home} />;
+    return <Navigate to={ROUTES.home.absolutePath} />;
   }
 
   return <>{children}</>;

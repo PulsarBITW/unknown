@@ -1,12 +1,5 @@
-.container {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  padding: var(--space-4);
-}
-
 .form-container {
-  width: 200px;
+  width: 100%;
 }
 
 .server-error-message {

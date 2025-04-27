@@ -63,7 +63,12 @@ export function LoginForm() {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <TextField.Root type="password" placeholder="••••••" {...field} />
+                  <TextField.Root
+                    type="password"
+                    placeholder="••••••"
+                    autoComplete="current-password"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
