@@ -5,6 +5,8 @@ import {ModelErrorResponseDto, postApiV1AuthRegister} from '@shared/api';
 import {redirectFx, ROUTES} from '@shared/config';
 import {createPageStateManager} from '@shared/lib/createPageStateManager';
 import {isAxiosError} from '@shared/lib/isAxiosError';
+import {toastModel} from '@shared/toastModel';
+import {ToastParams} from '@shared/ui/toaster';
 
 import {SignupFormData} from './signup-schema';
 
@@ -44,6 +46,16 @@ sample({
   clock: registerUserQuery.$succeeded,
   fn: () => ({to: ROUTES.auth.children.login.absolutePath}),
   target: redirectFx,
+});
+
+sample({
+  clock: registerUserQuery.$succeeded,
+  fn: (): ToastParams => ({
+    title: 'Success',
+    description: 'User registered successfully',
+    variant: 'success',
+  }),
+  target: toastModel.toastFx,
 });
 
 export const signupPageModel = {

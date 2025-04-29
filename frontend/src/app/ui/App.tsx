@@ -6,6 +6,7 @@ import {Provider, useUnit} from 'effector-react';
 import {appModel} from '@app/model';
 
 import {appScope} from '@shared/config';
+import {Toaster} from '@shared/ui/toaster';
 
 import {router} from './routing';
 
@@ -15,16 +16,20 @@ import '@radix-ui/themes/styles.css';
 const App = () => {
   const isInitialAuthLoading = useUnit(appModel.$isInitialAuthLoading);
   const [darkMode] = useState<boolean>(false);
+
   const getAppearance = () => (darkMode ? 'dark' : 'light');
 
   return (
     <Theme appearance={getAppearance()}>
+      <Toaster />
       {isInitialAuthLoading ? (
         <div className={styles['spinner-wrapper']}>
           <Spinner className={styles['spinner']} />
         </div>
       ) : (
-        <RouterProvider router={router} />
+        <>
+          <RouterProvider router={router} />
+        </>
       )}
     </Theme>
   );
