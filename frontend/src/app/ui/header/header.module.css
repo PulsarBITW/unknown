@@ -4,3 +4,16 @@
   position: sticky;
   top: 0;
 }
+
+.nav-list {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.logo {
+  text-decoration: none;
+}
+
+.logo:hover span {
+  color: var(--blue-10);
+}
