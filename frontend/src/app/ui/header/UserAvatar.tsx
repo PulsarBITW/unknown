@@ -8,7 +8,7 @@ interface UserAvatarProps {
 }
 
 export const UserAvatar = ({currentUser, logout}: UserAvatarProps) => {
-  const fullName = currentUser ? `${currentUser.firstName} ${currentUser.lastName}` : '';
+  const fullName = `${currentUser.firstName} ${currentUser.lastName}`;
 
   return (
     <Popover.Root>
