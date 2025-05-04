@@ -1,6 +1,6 @@
 export const AppLocales = {
   default: 'en',
-  suppored: {
+  supported: {
     en: {
       locale: 'en',
     },
@@ -10,8 +10,8 @@ export const AppLocales = {
   },
 } as const;
 
-export type SupportedLanguagesUnion = keyof typeof AppLocales.suppored;
+export type SupportedLanguagesUnion = keyof typeof AppLocales.supported;
 
 export const isLanguageSupported = (lng: string): lng is SupportedLanguagesUnion => {
-  return AppLocales.suppored[lng as keyof typeof AppLocales.suppored] !== undefined;
+  return AppLocales.supported[lng as keyof typeof AppLocales.supported] !== undefined;
 };

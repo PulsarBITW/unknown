@@ -26,10 +26,10 @@ export const i18nextConfig: InitOptions = {
   fallbackNS: AppLocales.default,
   debug: true,
   resources: {
-    [AppLocales.suppored.en.locale]: {
+    [AppLocales.supported.en.locale]: {
       translation: en,
     },
-    [AppLocales.suppored.de.locale]: {
+    [AppLocales.supported.de.locale]: {
       translation: de,
     },
   },

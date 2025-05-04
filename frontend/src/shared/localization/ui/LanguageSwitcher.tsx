@@ -5,12 +5,12 @@ import {AppLocales, SupportedLanguagesUnion} from '@shared/config';
 
 const LANGUAGES_ITEMS: {label: string; value: SupportedLanguagesUnion}[] = [
   {
-    label: AppLocales.suppored.en.locale.toUpperCase(),
-    value: AppLocales.suppored.en.locale satisfies SupportedLanguagesUnion,
+    label: AppLocales.supported.en.locale.toUpperCase(),
+    value: AppLocales.supported.en.locale satisfies SupportedLanguagesUnion,
   },
   {
-    label: AppLocales.suppored.de.locale.toUpperCase(),
-    value: AppLocales.suppored.de.locale satisfies SupportedLanguagesUnion,
+    label: AppLocales.supported.de.locale.toUpperCase(),
+    value: AppLocales.supported.de.locale satisfies SupportedLanguagesUnion,
   },
 ];
 

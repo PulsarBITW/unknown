@@ -6,7 +6,7 @@ import {appScope} from '@shared/config';
 import {appModel} from './model';
 import {AppWithProvider} from './ui';
 
-async function initializeApp() {
+function initializeApp() {
   const root = document.getElementById('root')!;
 
   allSettled(appModel.appStarted, {scope: appScope});
