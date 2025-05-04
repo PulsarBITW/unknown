@@ -4,6 +4,10 @@ import {ModelUserResponseDto} from '@shared/api';
 
 const $currentUser = createStore<ModelUserResponseDto | null>(null);
 
+const $fullUserName = $currentUser.map((user) =>
+  user ? `${user.firstName} ${user.lastName}` : null,
+);
+
 const currentUserReset = createEvent();
 const currentUserChanged = createEvent<ModelUserResponseDto>();
 
@@ -16,6 +20,7 @@ sample({
 
 export const currentUserModel = {
   $currentUser,
+  $fullUserName,
   currentUserReset,
   currentUserChanged,
 };

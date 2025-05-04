@@ -1,8 +1,10 @@
+import {useTranslation} from 'react-i18next';
 import {Button, Flex, Text} from '@radix-ui/themes';
 import {Link} from '@tanstack/react-router';
 import {useUnit} from 'effector-react';
 
 import {ROUTES} from '@shared/config';
+import {LanguageSwitcher} from '@shared/localization';
 
 import {currentUserModel} from '@entities/current-user';
 
@@ -13,10 +15,12 @@ import {UserAvatar} from './UserAvatar';
 import styles from './header.module.css';
 
 export const Header = () => {
-  const [isAuthenticated, logout, currentUser] = useUnit([
+  const {t} = useTranslation();
+
+  const [isAuthenticated, logout, fullUserName] = useUnit([
     authModel.$isAuth,
     authModel.logout,
-    currentUserModel.$currentUser,
+    currentUserModel.$fullUserName,
   ]);
 
   return (
@@ -24,7 +28,7 @@ export const Header = () => {
       <Flex justify="between" align="center" px="4" py="3">
         <Link to={ROUTES.home.absolutePath} className={styles.logo}>
           <Text size="4" weight="bold" color="indigo">
-            MyApp
+            {t('navigation.myApp')}
           </Text>
         </Link>
 
@@ -32,24 +36,28 @@ export const Header = () => {
           <ul className={styles['nav-list']}>
             <li>
               <Button asChild variant="soft">
-                <Link to={ROUTES.home.absolutePath}>Home</Link>
+                <Link to={ROUTES.home.absolutePath}>{t('navigation.home')}</Link>
               </Button>
             </li>
             <li>
               <Button asChild variant="soft">
-                <Link to={ROUTES.about.absolutePath}>About</Link>
+                <Link to={ROUTES.about.absolutePath}>{t('navigation.about')}</Link>
               </Button>
             </li>
           </ul>
         </nav>
 
-        {isAuthenticated && currentUser !== null ? (
-          <UserAvatar currentUser={currentUser} logout={logout} />
-        ) : (
-          <Button asChild color="blue">
-            <Link to={ROUTES.auth.children.login.absolutePath}>Login</Link>
-          </Button>
-        )}
+        <Flex align="center" gap="3">
+          <LanguageSwitcher />
+
+          {isAuthenticated && fullUserName !== null ? (
+            <UserAvatar fullUserName={fullUserName} logout={logout} />
+          ) : (
+            <Button asChild color="blue">
+              <Link to={ROUTES.auth.children.login.absolutePath}>{t('auth.login')}</Link>
+            </Button>
+          )}
+        </Flex>
       </Flex>
     </header>
   );

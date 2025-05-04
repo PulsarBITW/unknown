@@ -1,15 +1,11 @@
 import {Avatar, Button, Flex, Popover, Separator, Text} from '@radix-ui/themes';
 
-import {ModelUserResponseDto} from '@shared/api';
-
 interface UserAvatarProps {
-  currentUser: ModelUserResponseDto;
+  fullUserName: string;
   logout: () => void;
 }
 
-export const UserAvatar = ({currentUser, logout}: UserAvatarProps) => {
-  const fullName = `${currentUser.firstName} ${currentUser.lastName}`;
-
+export const UserAvatar = ({fullUserName, logout}: UserAvatarProps) => {
   return (
     <Popover.Root>
       <Popover.Trigger>
@@ -22,7 +18,7 @@ export const UserAvatar = ({currentUser, logout}: UserAvatarProps) => {
       </Popover.Trigger>
       <Popover.Content>
         <Flex gap="2" direction="column">
-          <Text>{fullName}</Text>
+          <Text>{fullUserName}</Text>
           <Separator size="4" />
           <Button color="red" onClick={logout}>
             Logout

@@ -9,7 +9,7 @@ import {AppWithProvider} from './ui';
 async function initializeApp() {
   const root = document.getElementById('root')!;
 
-  allSettled(appModel.appStarted, {scope: appScope}); // #TODO: await
+  allSettled(appModel.appStarted, {scope: appScope});
 
   createRoot(root).render(<AppWithProvider />);
 }

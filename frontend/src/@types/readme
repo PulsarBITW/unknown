@@ -1,0 +1,11 @@
+# @types
+
+## Overview
+
+This directory contains TypeScript declaration files (`.d.ts`) that extend and augment type definitions for external libraries. TypeScript automatically detects type definitions in this special `@types` folder.
+
+## Purpose
+
+- **Type extension**: Extends existing module types without modifying their source code
+- **Enhanced intellisense**: Provides autocompletion and type checking for library interfaces
+- **Custom configurations**: Tailors library typings to match project-specific requirements

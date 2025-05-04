@@ -1,13 +1,21 @@
 import {Blockquote, Code, Heading, Separator, Strong, Text} from '@radix-ui/themes';
 import {useUnit} from 'effector-react';
 
+import {TranslationExample} from '@shared/localization';
+
+import {currentUserModel} from '@entities/current-user';
+
 import {$message} from '../model';
 
 export const HomePage = () => {
-  const message = useUnit($message);
+  const {message, fullUserName} = useUnit({
+    message: $message,
+    fullUserName: currentUserModel.$fullUserName,
+  });
 
   return (
     <>
+      <TranslationExample username={fullUserName ?? ''} />
       <Heading size="8" mb="4">
         Message
       </Heading>

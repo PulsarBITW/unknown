@@ -1,0 +1,32 @@
+{
+  "common": {
+    "loading": "Wird geladen...",
+    "error": "Fehler",
+    "success": "Erfolgreich",
+    "count": "Anzahl: {{count}}"
+  },
+  "auth": {
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "logout": "Abmelden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "confirmPassword": "Passwort bestätigen"
+  },
+  "home": {
+    "title": "Startseite",
+    "welcome": "Willkommen, {{username}}!"
+  },
+  "about": {
+    "title": "Über uns",
+    "description": "Wir sind ein Team von Entwicklern"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "about": "Über uns",
+    "myApp": "MeineApp"
+  },
+  "translationExample": {
+    "welcome": "Willkommen, {{username}}!"
+  }
+}
