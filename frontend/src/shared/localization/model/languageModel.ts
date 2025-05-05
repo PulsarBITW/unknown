@@ -1,9 +1,10 @@
 import {initReactI18next} from 'react-i18next';
+import {NavigateOptions} from '@tanstack/react-router';
 import {createEffect, createEvent, sample, scopeBind} from 'effector';
 import i18next from 'i18next';
 import I18nextBrowserLanguageDetector from 'i18next-browser-languagedetector';
 
-import {appScope, SupportedLanguagesUnion} from '@shared/config';
+import {appScope, redirectFx, SupportedLanguagesUnion} from '@shared/config';
 
 import {i18nextConfig} from '../lib/i18nextConfig';
 
@@ -30,10 +31,16 @@ const changeLanguageFx = createEffect((lng: SupportedLanguagesUnion) => {
 });
 
 //                      create computed event
-const languageChanged = sample({clock: __INTERNAL_API.__changeLanguage});
+// const languageChanged = sample({clock: __INTERNAL_API.__changeLanguage});
+
+sample({
+  clock: __INTERNAL_API.__changeLanguage,
+  fn: (): NavigateOptions => ({reloadDocument: true}),
+  target: redirectFx,
+});
 
 export const languageModel = {
   init18nextFx,
-  languageChanged,
   changeLanguageFx,
+  // languageChanged,
 };
