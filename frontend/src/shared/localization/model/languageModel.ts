@@ -19,9 +19,16 @@ const __INTERNAL_API = {
 };
 
 const init18nextFx = createEffect(() => {
-  i18next.use(I18nextBrowserLanguageDetector).use(initReactI18next).init(i18nextConfig);
+  i18next
+    .use(I18nextBrowserLanguageDetector)
+    .use(initReactI18next)
+    .init(i18nextConfig)
+    .then(() => {
+      document.documentElement.setAttribute('lang', i18next.language);
+    });
 
   i18next.on('languageChanged', (lng) => {
+    document.documentElement.setAttribute('lang', lng);
     scopeBind(__INTERNAL_API.__changeLanguage, {scope: appScope})(lng);
   });
 });

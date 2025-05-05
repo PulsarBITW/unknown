@@ -1,5 +1,6 @@
 import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
 import {allSettled, createEvent} from 'effector';
+import i18next from 'i18next';
 
 import {appScope} from '@shared/config';
 
@@ -17,9 +18,13 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use(
   (config) => {
     const token = AccessTokenController.getToken();
+
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
+
+    config.headers['Accept-Language'] = i18next.language;
+
     return config;
   },
   (error) => {
