@@ -32,13 +32,18 @@ apiClient.interceptors.request.use(
   },
 );
 
+// #TODO - refactor
 apiClient.interceptors.response.use(
   (response) => {
     return response;
   },
   async (error) => {
     const originalRequest = error.config;
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (
+      error.response.status === 401 &&
+      !originalRequest._retry &&
+      originalRequest.url !== '/api/v1/auth/login/credentials'
+    ) {
       originalRequest._retry = true;
       try {
         const response = await postApiV1AuthRefresh({withCredentials: true});

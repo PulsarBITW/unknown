@@ -13,7 +13,11 @@ const $isInitialAuthLoading = authModel.authenticateByJWTQuery.$pending;
  */
 sample({
   clock: appStarted,
-  target: [languageModel.init18nextFx, authModel.authenticateByJWTQuery.start],
+  target: [
+    languageModel.init18nextFx,
+    authModel.initAuthBroadcastChannelFx,
+    authModel.authenticateByJWTQuery.start,
+  ],
 });
 
 export const appModel = {
