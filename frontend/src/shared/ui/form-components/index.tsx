@@ -7,7 +7,7 @@ import {
   FormProvider,
   useFormContext,
 } from 'react-hook-form';
-import {Text} from '@radix-ui/themes';
+import {Slot, Text} from '@radix-ui/themes';
 import clsx from 'clsx';
 
 import styles from './form-components.module.css';
@@ -102,7 +102,7 @@ const FormControl = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDi
     const {error, formItemId, formDescriptionId, formMessageId} = useFormField();
 
     return (
-      <div
+      <Slot
         ref={ref}
         id={formItemId}
         className={clsx(styles.control, className)}
@@ -145,10 +145,14 @@ const FormMessage = React.forwardRef<
 
   const body = error ? String(error?.message ?? '') : children;
 
+  // if (!body) {
+  //   return null;
+  // }
+
   return (
     <Text
       ref={ref}
-      as="div"
+      as="p"
       size="1"
       color="red"
       id={formMessageId}

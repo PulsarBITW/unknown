@@ -17,6 +17,14 @@ import {ServerErrorMessage} from './ServerErrorMessage';
 
 import styles from './signup.module.css';
 
+const DEFAULT_FORM_VALUES: SignupFormData = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+} as const;
+
 export function SignupForm() {
   const [isLoading, submitForm] = useUnit([
     signupPageModel.$isLoading,
@@ -26,6 +34,7 @@ export function SignupForm() {
   const form = useForm<SignupFormData>({
     resolver: zodResolver(signupSchema),
     mode: 'onChange',
+    defaultValues: DEFAULT_FORM_VALUES,
   });
 
   const onSubmit = (data: SignupFormData) => {
