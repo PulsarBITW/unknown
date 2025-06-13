@@ -8,8 +8,6 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "lint:css": "stylelint \"src/**/*.{css,scss}\"",
-    "lint:css:fix": "stylelint \"src/**/*.{css,scss}\" --fix",
     "format": "prettier --write \"**/*.{js,ts,jsx,tsx,css,scss}\"",
     "preview": "vite preview"
   },
@@ -17,10 +15,6 @@
     "*.{js,ts,jsx,tsx}": [
       "pnpm run format",
       "pnpm run lint"
-    ],
-    "*.{css,scss}": [
-      "pnpm run format",
-      "pnpm run lint:css"
     ]
   },
   "dependencies": {
@@ -58,11 +52,6 @@
     "orval": "^7.8.0",
     "prettier": "^3.5.3",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
-    "stylelint": "^16.18.0",
-    "stylelint-config-css-modules": "^4.4.0",
-    "stylelint-config-standard": "^38.0.0",
-    "stylelint-order": "^6.0.4",
-    "stylelint-prettier": "^5.0.3",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.26.1",
     "vite": "^6.3.1",
