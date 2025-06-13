@@ -1,7 +1,3 @@
-/**
- * @see https://prettier.io/docs/configuration
- * @type {import("prettier").Config}
- */
 const config = {
   tabWidth: 2,
   trailingComma: 'all',
@@ -10,6 +6,23 @@ const config = {
   bracketSpacing: false,
   printWidth: 100,
   endOfLine: 'auto',
+  plugins: ['@trivago/prettier-plugin-sort-imports'],
+  importOrderGroupNamespaceSpecifiers: true,
+  importOrderParserPlugins: ['typescript', 'jsx'],
+  importOrderSortSpecifiers: true,
+  importOrderSeparation: true,
+  importOrder: [
+    '<THIRD_PARTY_MODULES>',
+    '^@app(.*)$',
+    '^@pages(.*)$',
+    '^@layouts(.*)$',
+    '^@widgets(.*)$',
+    '^@features(.*)$',
+    '^@entities(.*)$',
+    '^@shared(.*)$',
+    '^[../]',
+    '^[./]',
+  ],
 };
 
 export default config;
